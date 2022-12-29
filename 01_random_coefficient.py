@@ -32,3 +32,8 @@ for k,v in coef.items():
 else:
     str_equation = str_equation[:-3]
 print(str_equation)
+
+
+my_file = open('file.txt', 'w')     
+my_file.write(str_equation) 
+my_file.close()              
