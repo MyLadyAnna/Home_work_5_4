@@ -14,15 +14,10 @@ def decode(equation: dict) -> str:              # из словаря в стр�
     for key, value in equation.items():
         if value != 0:
             new_equation.append(f'{value}*x**{key}')
-    new_equation = ' + '.join(new_equation) + ' = 0'
+    new_equation = ' ' + ' +'.join(new_equation) + ' = 0'
     new_equation = new_equation.replace('+ -', '- ')\
-        .replace('*x**0', '').replace('x**1', 'x')
-    if new_equation.startswith('1*x'):
-        return new_equation[2:]
-    elif new_equation.startswith('-1*x'):
-        return new_equation.replace('-1*x', '-x')
-    else:
-        return new_equation
+        .replace('*x**0', '').replace(' 1*x', ' x').replace(' -1*x', ' -x').replace('x**1', 'x')
+    return new_equation[1:]
 
 def encode(equation: str) -> dict:                  # из строки в словарь
     equation = equation.replace(' + ', ' ').replace(' - ', ' -')\
