@@ -14,7 +14,7 @@ def decode(equation: dict) -> str:              # из словаря в стр�
     for key, value in equation.items():
         if value != 0:
             new_equation.append(f'{value}*x**{key}')
-    new_equation = ' ' + ' +'.join(new_equation) + ' = 0'
+    new_equation = ' ' + ' + '.join(new_equation) + ' = 0'
     new_equation = new_equation.replace('+ -', '- ')\
         .replace('*x**0', '').replace(' 1*x', ' x').replace(' -1*x', ' -x').replace('x**1', 'x')
     return new_equation[1:]
@@ -44,4 +44,10 @@ equation1 = create_equation()
 print(f'Первый многочлен: {decode(equation1)}')
 equation2 = create_equation()
 print(f'Второй многочлен: {decode(equation2)}')
-print(f'Их сумма: {addition(equation1, equation2)}')
+print(f'Их сумма в виде словаря: {addition(equation1, equation2)}')
+print(f'Сумма в виде многочлена: {decode(addition(equation1, equation2))}')
+
+result = str(decode(addition(equation1, equation2)))
+my_file = open('sum_eq.txt', 'w')     
+my_file.write(result) 
+my_file.close()  
